@@ -1,4 +1,8 @@
 package com.camcop.outfitmixer.service;
 
-public interface ServiceInterface {
+public interface ServiceInterface<T> {
+
+    //	Create
+    T add(T t);
+
 }
