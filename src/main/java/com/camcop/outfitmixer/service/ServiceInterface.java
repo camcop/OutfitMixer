@@ -19,5 +19,4 @@ public interface ServiceInterface<T> {
     //	Delete
     T deleteById(Long id);
 
-
 }
