@@ -3,6 +3,7 @@ package com.camcop.outfitmixer.domain;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Item")
@@ -83,5 +84,27 @@ public class Item {
         this.colour = colour;
     }
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", brand='" + brand + '\'' +
+                ", colour='" + colour + '\'' +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id.equals(item.id) && name.equals(item.name) && type.equals(item.type) && Objects.equals(brand, item.brand) && Objects.equals(colour, item.colour);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, brand, colour);
+    }
 }
