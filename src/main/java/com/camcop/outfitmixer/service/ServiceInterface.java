@@ -10,4 +10,7 @@ public interface ServiceInterface<T> {
     //	Read all
     List<T> getAll();
 
+    //	Read one
+    T getById(Long id);
+
 }
