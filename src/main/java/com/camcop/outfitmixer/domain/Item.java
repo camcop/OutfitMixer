@@ -9,6 +9,7 @@ import java.util.Objects;
 @Table(name = "Item")
 public class Item {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
