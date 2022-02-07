@@ -40,4 +40,9 @@ public class ItemController {
         return new ResponseEntity<Item>(this.service.updateById(id, item), HttpStatus.ACCEPTED);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Item> deleteById(@PathVariable("id") Long id) {
+        return new ResponseEntity<Item>(this.service.deleteById(id), HttpStatus.ACCEPTED);
+    }
+
 }
