@@ -1,12 +1,12 @@
 package com.camcop.outfitmixer.rest;
 
+import com.camcop.outfitmixer.domain.Item;
 import com.camcop.outfitmixer.service.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -22,7 +22,13 @@ public class ItemController {
     @PostMapping
     public ResponseEntity<Item> add(@RequestBody Item item) {
         this.service.add(item);
-        return new ResponseEntity<Item>(item, HttpStatus.ACCEPTED)
+        return new ResponseEntity<Item>(item, HttpStatus.ACCEPTED);
     }
+
+    @GetMapping
+    public ResponseEntity<List> getAll() {
+        return new ResponseEntity<List>(this.service.getAll(), HttpStatus.ACCEPTED);
+    }
+
 
 }
