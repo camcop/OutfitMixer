@@ -1,9 +1,8 @@
 package com.camcop.outfitmixer.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Item")
@@ -11,5 +10,19 @@ public class Item {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    @NotNull
+    private String name;
+
+    @Column
+    @NotNull
+    private String type;
+
+    @Column
+    private String brand;
+
+    @Column
+    private String colour;
 
 }
