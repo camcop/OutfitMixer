@@ -13,4 +13,11 @@ public interface ServiceInterface<T> {
     //	Read one
     T getById(Long id);
 
+    //	Update
+    T updateById(Long id, T t);
+
+    //	Delete
+    T deleteById(Long id);
+
+
 }
