@@ -28,5 +28,17 @@ public class ItemTest {
         assertEquals("Plain white t-shirt", newItem.getName());
     }
 
+    @Test
+    public void testToString() {
+        assertEquals("Item{id=1, name='Plain white t-shirt', type='Top', brand='Uniqlo', colour='White'}", newItem.toString());
+    }
+
+    @Test
+    public void testEquals() {
+
+    }
+
+    @Test
+    public void testHashCode() {}
 
 }
