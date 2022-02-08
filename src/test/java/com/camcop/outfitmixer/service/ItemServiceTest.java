@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,6 +39,13 @@ public class ItemServiceTest {
         Mockito.when(this.repo.save(newItem)).thenReturn(savedItem);
         assertEquals(savedItem, this.service.add(newItem));
         Mockito.verify(this.repo, Mockito.times(1)).save(newItem);
+    }
+
+    @Test
+    public void testGetAll() {
+        Mockito.when(this.repo.findAll()).thenReturn(List.of(savedItem));
+        assertEquals(List.of(savedItem), this.service.getAll());
+        Mockito.verify(this.repo, Mockito.times(1)).findAll();
     }
 
 }
