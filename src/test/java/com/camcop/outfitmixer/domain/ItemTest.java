@@ -1,5 +1,6 @@
 package com.camcop.outfitmixer.domain;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,10 +36,8 @@ public class ItemTest {
 
     @Test
     public void testEquals() {
+        EqualsVerifier.forClass(Item.class).usingGetClass().withPrefabValues(Item.class, newItem, new Item()).withNonnullFields("id").verify();
 
     }
-
-    @Test
-    public void testHashCode() {}
 
 }
