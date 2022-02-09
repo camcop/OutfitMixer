@@ -71,5 +71,18 @@ public class ItemControllerTest {
 
     }
 
+    @Test
+    void testReadOne() throws Exception {
+        String schemaItemJSON = this.map.writeValueAsString(schemaItem);
+        RequestBuilder readReq = get("/" + schemaItem.getId());
+
+        ResultMatcher matchStatus = status().isAccepted();
+        ResultMatcher matchBody = content().json(schemaItemJSON);
+
+        this.mock.perform(readReq).andExpect(matchStatus).andExpect(matchBody);
+
+    }
+
+
 
 }
