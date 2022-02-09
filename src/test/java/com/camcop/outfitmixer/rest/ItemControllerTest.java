@@ -16,11 +16,9 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -37,12 +35,14 @@ public class ItemControllerTest {
     private Item schemaItem;
     private Item addItem;
     private Item retrieveItem;
+    private Item updateItem;
 
     @BeforeEach
     public void setUp() {
         schemaItem = new Item(1L,"Plain white t-shirt","Top", "Uniqlo", "White");
         addItem = new Item("Plain white t-shirt","Top", "Uniqlo", "White");
         retrieveItem = new Item(2L,"Plain white t-shirt","Top", "Uniqlo", "White");
+        updateItem = new Item(1L,"Grey joggers","Bottom", "Lands End", "Grey");
     }
 
     @Test
@@ -80,6 +80,18 @@ public class ItemControllerTest {
         ResultMatcher matchBody = content().json(schemaItemJSON);
 
         this.mock.perform(readReq).andExpect(matchStatus).andExpect(matchBody);
+
+    }
+
+    @Test
+    void testUpdate() throws Exception {
+        String updateItemJSON = this.map.writeValueAsString(updateItem);
+        RequestBuilder updateReq = put("/" + schemaItem.getId()).contentType(MediaType.APPLICATION_JSON).content(updateItemJSON);
+
+        ResultMatcher matchStatus = status().isAccepted();
+        ResultMatcher matchBody = content().json(updateItemJSON);
+
+        this.mock.perform(updateReq).andExpect(matchStatus).andExpect(matchBody);
 
     }
 
