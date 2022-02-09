@@ -64,4 +64,11 @@ public class ItemServiceTest {
         Mockito.verify(this.repo, Mockito.times(1)).save(newItem);
     }
 
+    @Test
+    public void deleteById() {
+        Mockito.when(this.repo.findById(savedItem.getId())).thenReturn(Optional.ofNullable(savedItem));
+        assertEquals(savedItem, this.service.deleteById(savedItem.getId()));
+        Mockito.verify(this.repo, Mockito.times(1)).findById(savedItem.getId());
+    }
+
 }
