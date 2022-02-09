@@ -55,7 +55,6 @@ public class ItemControllerTest {
         ResultMatcher matchBody = content().json(savedItemJSON);
 
         this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
-
     }
 
     @Test
@@ -68,7 +67,6 @@ public class ItemControllerTest {
         ResultMatcher matchBody = content().json(allItemsJSON);
 
         this.mock.perform(readReq).andExpect(matchStatus).andExpect(matchBody);
-
     }
 
     @Test
@@ -80,7 +78,6 @@ public class ItemControllerTest {
         ResultMatcher matchBody = content().json(schemaItemJSON);
 
         this.mock.perform(readReq).andExpect(matchStatus).andExpect(matchBody);
-
     }
 
     @Test
@@ -92,9 +89,17 @@ public class ItemControllerTest {
         ResultMatcher matchBody = content().json(updateItemJSON);
 
         this.mock.perform(updateReq).andExpect(matchStatus).andExpect(matchBody);
-
     }
 
+    @Test
+    void testDelete() throws Exception {
+        String schemaItemJSON = this.map.writeValueAsString(schemaItem);
+        RequestBuilder updateReq = delete("/" + schemaItem.getId());
 
+        ResultMatcher matchStatus = status().isAccepted();
+        ResultMatcher matchBody = content().json(schemaItemJSON);
+
+        this.mock.perform(updateReq).andExpect(matchStatus).andExpect(matchBody);
+    }
 
 }
