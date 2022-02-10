@@ -101,11 +101,13 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return id.equals(item.id) && name.equals(item.name) && type.equals(item.type) && Objects.equals(brand, item.brand) && Objects.equals(colour, item.colour);
+        return name.equals(item.name) && type.equals(item.type) && Objects.equals(brand, item.brand) && Objects.equals(colour, item.colour);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, type, brand, colour);
     }
+
+
 }
